@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('body')->nullable();
-            $table->double('price')->nullable();
+            $table->string('price')->nullable();
             $table->integer('sold_count')->default(0);
             $table->integer('category_id');
             $table->boolean('is_vip')->default(1);
