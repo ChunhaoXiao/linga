@@ -1,0 +1,1 @@
+<a href="javascript:;" data-url="{{$url??''}}" class="far fa-trash-alt text-secondary ml-2"></a>
