@@ -21,7 +21,7 @@ class Post extends JsonResource
             'title' => $this->title,
             //'cover' => $this->cover,
             //'files' => $this->files,
-            'cover' => !empty($this->cover) ? asset('storage/'.$this->cover->path) : '',
+            'cover' => $this->cover_thumb, //!empty($this->cover) ? asset('storage/'.$this->cover->path) : '',
             'files' => $this->files->map->getFullPath(),
             'created_at' => $this->created_at ? $this->created_at->toDateString() : '',
             'file_count' => $this->files_count,

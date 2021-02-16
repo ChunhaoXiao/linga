@@ -101,6 +101,19 @@ class Post extends Model
         return pathinfo($this->cover->path ?? '', PATHINFO_EXTENSION) == 'mp4';
     }
 
+    public function getCoverThumbAttribute()
+    {
+        if (empty($this->cover->path)) {
+            return '';
+        }
+        if ($this->is_video()) {
+            return asset('storage/'.$this->cover->path);
+        }
+        $file = pathinfo($this->cover->path);
+
+        return asset('storage/'.$file['dirname'].'/'.$file['filename'].'_thumb.'.$file['extension']);
+    }
+
     // public function getCoverAttribute() {
     //     return asset('storage/'.$this->files[0]->path);
     // }

@@ -26,7 +26,7 @@ class Comment extends JsonResource
             'id' => $this->id,
             'user' => $this->user->name,
             'content' => $this->body,
-            'created' => $this->created_at,
+            'created' => $this->created_at->toDateTimeString(),
             'likes' => $this->likes_count,
             'mylike' => $this->mylike_count,
             'post_id' => $this->post_id,
