@@ -10,7 +10,7 @@ use App\Http\Resources\Post as PostResource;
 class RecommendController extends Controller
 {
     public function index() {
-        $datas = Post::has('files')->with('cover')->limit(6)->get();
+        $datas = Post::has('files')->vip()->with('cover')->latest()->limit(8)->get();
         return PostResource::collection($datas);
     }
 }
