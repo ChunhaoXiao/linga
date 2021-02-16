@@ -10,7 +10,7 @@ class IndexSwiperController extends Controller
 {
     public function index() {
         //使用子查询
-        $post = Post::has('files')->with('cover')->limit(5)->get();
+        $post = Post::has('files')->vip()->with('cover')->latest()->limit(5)->get();
         return PostResource::collection($post);
     }
 }

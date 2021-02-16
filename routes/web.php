@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\PictureThumbController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\ChargeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('');
+// });
+Route::get('/charge', [ChargeController::class, 'create'])->name('charge');
+Route::post('/charge', [ChargeController::class, 'store'])->name('charge.store');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [IndexController::class, 'index']);
@@ -28,4 +32,5 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/upload', [UploadController::class, 'store']);
     Route::resource('/post', PostController::class);
     Route::get('/thumb', [PictureThumbController::class, 'store'])->name('thumb');
+    Route::resource('/card', CardController::class);
 });
