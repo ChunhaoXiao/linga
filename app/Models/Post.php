@@ -117,7 +117,7 @@ class Post extends Model
 
     protected static function booted()
     {
-        static::deleted(function ($post) {
+        static::deleting(function ($post) {
             \Log::info($post);
             $post->histories()->delete();
             $post->comments()->delete();
