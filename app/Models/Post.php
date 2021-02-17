@@ -118,6 +118,7 @@ class Post extends Model
     protected static function booted()
     {
         static::deleted(function ($post) {
+            \Log::info($post);
             $post->histories()->delete();
             $post->comments()->delete();
             Feed::where('related_post_id', $post->id)->delete();
