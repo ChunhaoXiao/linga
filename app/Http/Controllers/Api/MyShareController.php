@@ -10,8 +10,12 @@ class MyShareController extends Controller
 {
     public function index()
     {
-        $datas = Auth::user()->posts()->latest()->paginate(20);
-
+        $user = Auth::user();
+        if($user->manager()->exists()) {
+            $datas = Post::with('cover')->latest()->paginate(20);
+            return MyShareResource::collection($datas);
+        }
+        $datas = Auth::user()->posts()->with('cover')->latest()->paginate(20);
         return MyShareResource::collection($datas);
     }
 }
