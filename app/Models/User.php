@@ -114,11 +114,11 @@ class User extends Authenticatable
 
     public function createLikeFeed($object)
     {
-        if(!empty($object->user->id)) {
+        if (!empty($object->user->id)) {
             $data = $object->feeds()->make([
                 'to_user' => $object->user->id,
                 'action' => 'like',
-                'related_post_id' => $object->post->id??$object->id,
+                'related_post_id' => $object->post->id ?? $object->id,
             ]);
             $this->feeds()->save($data);
         }
@@ -126,12 +126,12 @@ class User extends Authenticatable
 
     public function deleteLikeFeed($object)
     {
-        if(!empty($object->user->id)) {
+        if (!empty($object->user->id)) {
             $object->feeds()->where([
                 ['from_user', $this->id],
                 ['to_user', $object->user->id],
             ])->delete();
-        } 
+        }
     }
 
     public function createCommentFeed()
@@ -141,5 +141,10 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class, 'user_id');
+    }
+
+    public function manager()
+    {
+        return $this->hasOne(ManagerUser::class, 'user_id');
     }
 }

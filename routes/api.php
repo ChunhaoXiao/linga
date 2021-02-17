@@ -24,6 +24,7 @@ use App\Http\Controllers\Api\RecommendController;
 use App\Http\Controllers\Api\UnreadFeedCountController;
 use App\Http\Controllers\Api\UploadController;
 use App\Http\Controllers\Api\UserProfileController;
+use App\Http\Controllers\Api\UserRoleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -67,4 +68,5 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('/post/{post}', [PostController::class, 'destroy']);
     Route::get('/feed', [FeedController::class, 'index']);
     Route::get('/feed/unread', [UnreadFeedCountController::class, 'index']);
+    Route::get('/role', [UserRoleController::class, 'index']);
 });

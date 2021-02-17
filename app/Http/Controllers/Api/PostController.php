@@ -43,7 +43,10 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $post = Auth::user()->posts()->create($request->only(['title', 'body', 'category_id']));
+        $user = Auth::user();
+        $datas = $request->only(['title', 'body', 'category_id', 'is_vip']);
+        $datas['is_vip'] = $user->manager()->exists() ? $datas['is_vip'] : 1;
+        $post = Auth::user()->posts()->create($datas);
         $post->files()->createMany(array_map(function ($item) { return ['path' => $item]; }, $request->file));
 
         return response()->json(['success' => 1]);
