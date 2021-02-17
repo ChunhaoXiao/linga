@@ -120,7 +120,7 @@ class Post extends Model
         static::deleted(function ($post) {
             $post->histories()->delete();
             $post->comments()->delete();
-            $post->feeds()->delete();
+            Feed::where('related_post_id', $post->id)->delete();
             $post->likes()->delete();
             Collection::where('post_id', $post->id)->delete();
         });
