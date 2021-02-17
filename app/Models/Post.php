@@ -119,10 +119,13 @@ class Post extends Model
     {
         static::deleting(function ($post) {
             \Log::info($post);
-            $post->histories()->delete();
-            $post->comments()->delete();
+            History::where('post_id', $post->id)->delete();
+            PostComment::where('post_id', $post->id)->delete();
+            // $post->histories()->delete();
+            // $post->comments()->delete();
             Feed::where('related_post_id', $post->id)->delete();
-            $post->likes()->delete();
+            Like::where([['likeable_type', "App\Models\Post"], ['likeable_id', $post->id]])->delete();
+            // $post->likes()->delete();
             Collection::where('post_id', $post->id)->delete();
         });
     }
