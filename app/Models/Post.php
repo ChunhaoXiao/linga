@@ -114,6 +114,18 @@ class Post extends Model
         return asset('storage/'.$file['dirname'].'/'.$file['filename'].'_thumb.'.$file['extension']);
     }
 
+
+    protected static function booted()
+    {
+        static::deleted(function ($post) {
+            $post->histories()->delete();
+            $post->comments()->delete();
+            $post->feeds()->delete();
+            $post->likes()->delete();
+            Collection::where('post_id', $post->id)->delete();
+        });
+    }
+
     // public function getCoverAttribute() {
     //     return asset('storage/'.$this->files[0]->path);
     // }

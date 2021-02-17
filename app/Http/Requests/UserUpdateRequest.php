@@ -25,7 +25,7 @@ class UserUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', Rule::unique('users')->ignore($this->user()->id), "min:3"],
+            'name' => ['required', Rule::unique('users')->ignore($this->user()->id), "min:3", "max:12"],
         ];
     }
 
@@ -33,6 +33,8 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'name.required' => '用户名不能为空',
+            'name.min' => '用户名最少3个字符',
+            'name.max' => '用户名最大12个字符',
             'name.unique' => '用户名已存在',
         ];
     }
