@@ -25,6 +25,6 @@ class PostPolicy
         if(!$post->is_vip) {
             return true;
         }
-        return $user->is_vip();
+        return $user->is_vip() || $user->manager()->exists();
     }
 }
