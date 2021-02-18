@@ -10,9 +10,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
-use App\Http\Resources\Comment as CommentResource;
+use App\Http\Resources\PostComment as CommentResource;
 use App\Models\Post;
 use App\Models\PostComment;
+use App\Models\Word;
+use DfaFilter\SensitiveHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,6 +28,7 @@ class PostCommentController extends Controller
     public function index(Post $post)
     {
         $datas = $post->comments()->with('user', 'comment.user')->withCount('likes', 'mylike')->paginate();
+        //\Log::info($datas);
 
         return CommentResource::collection($datas);
     }
@@ -48,7 +51,12 @@ class PostCommentController extends Controller
      */
     public function store(CommentRequest $request, Post $post)
     {
-        $comment = $post->comments()->make($request->input());
+        $datas = $request->input();
+        // $words = Word::pluck('name');
+        // $handle = SensitiveHelper::init()->setTree($words);
+        // $datas['body'] = $handle->replace($datas['body'], '*', true);
+
+        $comment = $post->comments()->make($datas);
         $newComment = Auth::user()->comments()->create($comment->toArray());
 
         if ($request->comment_id || $post->user_id) {

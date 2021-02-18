@@ -50,7 +50,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/categories', [CategoryController::class, 'index']);
     Route::get('/posts', [PostController::class, 'index']);
     Route::get('/posts/{post}', [PostController::class, 'show']);
-    Route::resource('posts.comments', PostCommentController::class)->shallow();
+    Route::resource('posts.comments', PostCommentController::class)->shallow()->middleware('word.filter');
     Route::get('/user', [UserProfileController::class, 'index']);
     Route::put('/user', [UserProfileController::class, 'update']);
 
@@ -64,7 +64,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/comment/{comment}/like', [LikeCommentController::class, 'store']);
     Route::post('/upload', [UploadController::class, 'store']);
 
-    Route::post('/post', [PostController::class, 'store']);
+    Route::post('/post', [PostController::class, 'store'])->middleware('word.filter');
     Route::delete('/post/{post}', [PostController::class, 'destroy']);
     Route::get('/feed', [FeedController::class, 'index']);
     Route::get('/feed/unread', [UnreadFeedCountController::class, 'index']);

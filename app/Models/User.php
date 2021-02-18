@@ -147,4 +147,13 @@ class User extends Authenticatable
     {
         return $this->hasOne(ManagerUser::class, 'user_id');
     }
+
+    public function getUnameAttribute()
+    {
+        if (!empty($this->name)) {
+            return $this->name;
+        }
+
+        return '用户_'.$this->id;
+    }
 }

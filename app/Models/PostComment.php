@@ -17,28 +17,34 @@ class PostComment extends Model
     use HasFactory;
     protected $guarded = [];
 
-    public function post() {
+    public function post()
+    {
         return $this->belongsTo(Post::class, 'post_id');
     }
 
-    public function likes() {
+    public function likes()
+    {
         return $this->morphMany(Like::class, 'likeable');
     }
 
-    public function mylike() {
+    public function mylike()
+    {
         return $this->morphOne(Like::class, 'likeable')->where('user_id', Auth::id());
     }
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class, 'user_id')->withDefault();
     }
 
-    public function feeds() {
+    public function feeds()
+    {
         return $this->morphMany(Feed::class, 'feedable');
     }
 
-    public function comment() {
-        return $this->belongsTo(PostComment::class,'comment_id')->withDefault();
+    public function comment()
+    {
+        return $this->belongsTo(PostComment::class, 'comment_id')->withDefault();
     }
 
     // public function my_comments() {

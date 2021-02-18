@@ -10,7 +10,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Comment extends JsonResource
+class PostComment extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -24,13 +24,14 @@ class Comment extends JsonResource
         //return parent::toArray($request);
         return [
             'id' => $this->id,
-            'user' => $this->user->name,
+            'user' => $this->user->uname,
             'content' => $this->body,
             'created' => $this->created_at->toDateTimeString(),
             'likes' => $this->likes_count,
             'mylike' => $this->mylike_count,
             'post_id' => $this->post_id,
-            'reply_to' => $this->comment->user->name ?? '',
+            //'comment_to' => $this->comment->user->id,
+            'reply_to' => !empty($this->comment->user->id) ? $this->comment->user->uname : '',
         ];
     }
 }
