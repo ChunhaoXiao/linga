@@ -19,6 +19,7 @@ class Post extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
+            'body' => $this->body ?? $this->title,
             //'cover' => $this->cover,
             //'files' => $this->files,
             'cover' => $this->cover_thumb, //!empty($this->cover) ? asset('storage/'.$this->cover->path) : '',
