@@ -58,7 +58,7 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/my/comment', [MyCommentController::class, 'index']);
     Route::get('/my/like', [MyLikeController::class, 'index']);
     Route::get('/my/collection', [MyCollectionController::class, 'index']);
-    Route::get('/my/share', [MyShareController::class, 'index']);
+    Route::get('/my/share', [MyShareController::class, 'index'])->middleware('extra.data');
     Route::post('/post/{post}/like', [LikePostController::class, 'store']);
     Route::post('/post/{post}/collect', [CollectController::class, 'store']);
     Route::post('/comment/{comment}/like', [LikeCommentController::class, 'store']);

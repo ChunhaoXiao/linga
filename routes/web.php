@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\PictureThumbController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\ChargeController;
+use App\Http\Controllers\ShareController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,4 +34,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/post', PostController::class);
     Route::get('/thumb', [PictureThumbController::class, 'store'])->name('thumb');
     Route::resource('/card', CardController::class);
+});
+
+Route::get('/share', [ShareController::class, 'create']);
+
+Route::post('/upload', function () {
+    $f = request()->filepond->store('shares');
+
+    return response()->json(['f' => $f]);
 });
