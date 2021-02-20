@@ -15,7 +15,7 @@ class CreateConfigsTable extends Migration
     {
         Schema::create('configs', function (Blueprint $table) {
             $table->id();
-            $table->boolean('send_extra_data')->default(0);
+            $table->string('share_text')->nullable();
             $table->timestamps();
         });
     }

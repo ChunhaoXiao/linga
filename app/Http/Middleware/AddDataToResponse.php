@@ -18,7 +18,7 @@ class AddDataToResponse
         $response = $next($request);
         //$extra = array_filter(config('extra'));
         //$extra = ['share' => '私信投稿'];
-        $data = Config::first()->send_extra_data ?? 0;
+        $data = Config::first()->share_text ?? '';
         if ($data) {
             $content = json_decode($response->content(), true) ?? [];
             $response->setContent(json_encode(array_merge($content, ['share' => $data])));
