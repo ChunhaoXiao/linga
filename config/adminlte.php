@@ -240,6 +240,15 @@ return [
             // 'label'       => 4,
             'label_color' => 'success',
         ],
+
+        [
+            'text' => '系统设置',
+            'url' => 'admin/config',
+            'icon' => 'far fa-fw fa-file',
+            // 'label'       => 4,
+            'label_color' => 'success',
+        ],
+
         ['header' => 'account_settings'],
         [
             'text' => 'profile',

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\PictureThumbController;
 use App\Http\Controllers\Admin\PostController;
@@ -34,6 +35,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::resource('/post', PostController::class);
     Route::get('/thumb', [PictureThumbController::class, 'store'])->name('thumb');
     Route::resource('/card', CardController::class);
+    Route::get('/config', [ConfigController::class, 'create'])->name('config.create');
+    Route::put('/config', [ConfigController::class, 'update'])->name('config.update');
 });
 
 Route::get('/share', [ShareController::class, 'create']);
