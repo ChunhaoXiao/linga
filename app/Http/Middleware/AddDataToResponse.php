@@ -15,8 +15,8 @@ class AddDataToResponse
     public function handle(Request $request, Closure $next)
     {
         $response = $next($request);
-        // $extra = array_filter(config('extra'));
-        $extra = ['share' => '私信投稿'];
+        $extra = array_filter(config('extra'));
+        // $extra = ['share' => '私信投稿'];
         if (!empty($extra)) {
             $content = json_decode($response->content(), true) ?? [];
             $response->setContent(json_encode(array_merge($content, $extra)));
