@@ -12,6 +12,7 @@ class Card extends Model
     protected $fillable = [
         'card_number',
         'type',
+        'mark',
         'used_at',
         'user_id',
     ];
@@ -31,12 +32,14 @@ class Card extends Model
         return $query;
     }
 
-    public function getVipMonthAttribute() {
+    public function getVipMonthAttribute()
+    {
         $types = [
-            1 => 1, 
-            2 => 3, 
-            3 => 12
+            1 => 1,
+            2 => 3,
+            3 => 12,
         ];
+
         return $types[$this->type] ?? 1;
     }
 }
