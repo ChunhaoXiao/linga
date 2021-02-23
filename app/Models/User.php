@@ -37,6 +37,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    protected $appends = ['uname'];
+
     /**
      * The attributes that should be cast to native types.
      *
