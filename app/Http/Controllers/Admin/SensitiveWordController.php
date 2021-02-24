@@ -32,6 +32,6 @@ class SensitiveWordController extends Controller
             }
         }
 
-        // return redirect()->route('admin.words.index');
+        return redirect()->route('admin.words.index');
     }
 }
