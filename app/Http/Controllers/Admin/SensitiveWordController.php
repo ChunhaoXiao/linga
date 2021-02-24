@@ -24,13 +24,13 @@ class SensitiveWordController extends Controller
     {
         $words = $request->words;
         $words = str_replace([' ', ',', '，', PHP_EOL], ',', $words);
-        $words = explode(',', $words);
+        $words = array_filter(explode(',', $words));
         foreach ($words as $v) {
             if (Word::where('name', $v)->doesntExist()) {
                 Word::create(['name' => $v]);
             }
         }
 
-        return redirect()->route('admin.words.index');
+        // return redirect()->route('admin.words.index');
     }
 }
