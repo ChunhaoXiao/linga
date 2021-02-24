@@ -4,10 +4,12 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CardController;
 use App\Http\Controllers\Admin\CardFileController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\IndexController;
 use App\Http\Controllers\Admin\PictureThumbController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\SensitiveWordController;
 use App\Http\Controllers\Admin\UploadController;
 use App\Http\Controllers\ChargeController;
 use App\Http\Controllers\ShareController;
@@ -41,6 +43,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::get('/config', [ConfigController::class, 'create'])->name('config.create');
     Route::put('/config', [ConfigController::class, 'update'])->name('config.update');
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::resource('/words', SensitiveWordController::class);
+    Route::resource('/comments', CommentController::class);
 });
 
 Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('admin.showlogin');

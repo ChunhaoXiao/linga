@@ -257,6 +257,23 @@ return [
 
             'label_color' => 'success',
         ],
+        [
+            'text' => '内容管理',
+            //'url' => 'admin/card',
+            'icon' => 'far fa-fw fa-file',
+
+            //'label_color' => 'success',
+            'submenu' => [
+                [
+                    'text' => '评论管理',
+                    'url' => 'admin/comments',
+                ],
+                [
+                    'text' => '敏感词管理',
+                    'url' => 'admin/words',
+                ],
+            ],
+        ],
         // ['header' => 'account_settings'],
         // [
         //     'text' => 'profile',

@@ -1,6 +1,14 @@
 @extends('adminlte::page')
 
-
+@section('css')
+    <!-- <link rel="stylesheet" href="/css/admin_custom.css"> -->
+    <style>
+        nav svg {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+@stop
 @section('js')
 
 <script>
