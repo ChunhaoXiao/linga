@@ -26,6 +26,7 @@ class SensitiveWordController extends Controller
         $words = str_replace([' ', ',', '，', PHP_EOL], ',', $words);
         $words = array_filter(explode(',', $words));
         foreach ($words as $v) {
+            $v = trim($v);
             if (Word::where('name', $v)->doesntExist()) {
                 Word::create(['name' => $v]);
             }
