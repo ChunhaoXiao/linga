@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/auth', [AuthController::class, 'store']);
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:api', 'extra.data')->group(function () {
     Route::get('/swipers', [IndexSwiperController::class, 'index']);
     Route::get('/recommend', [RecommendController::class, 'index']);
     Route::get('/categories', [CategoryController::class, 'index']);
