@@ -83,6 +83,11 @@ class User extends Authenticatable
         return $this->hasMany(VipMemeber::class, 'user_id');
     }
 
+    public function vip()
+    {
+        return $this->hasOne(VipMemeber::class)->where('ended_at', '>', now())->limit(1);
+    }
+
     public function is_vip()
     {
         return $this->vips()->where('ended_at', '>', now())->exists();

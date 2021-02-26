@@ -21,7 +21,7 @@ class AddDataToResponse
         $data = Config::first()->share_text ?? '';
         if ($data) {
             $content = json_decode($response->content(), true) ?? [];
-            $response->setContent(json_encode(array_merge($content, ['share' => $data])));
+            $response->setContent(json_encode(array_merge($content, ['share' => $data, 'charge' => 'join'])));
         }
 
         return $response;

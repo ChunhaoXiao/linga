@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\PictureThumbController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\SensitiveWordController;
 use App\Http\Controllers\Admin\UploadController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ChargeController;
 use App\Http\Controllers\ShareController;
 use Illuminate\Support\Facades\Route;
@@ -45,6 +46,8 @@ Route::prefix('admin')->name('admin.')->middleware('auth:admin')->group(function
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::resource('/words', SensitiveWordController::class);
     Route::resource('/comments', CommentController::class);
+
+    Route::resource('/users', UserController::class);
 });
 
 Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('admin.showlogin');
