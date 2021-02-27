@@ -19,4 +19,5 @@
             @endforeach
         </tbody>
     </table>
+    {{$datas->links()}}
 @endsection
