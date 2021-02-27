@@ -163,4 +163,13 @@ class User extends Authenticatable
 
         return '用户_'.$this->id;
     }
+
+    public function scopeName($query, $name = '')
+    {
+        if (empty($name)) {
+            return $query;
+        }
+
+        return $query->where('name', $name);
+    }
 }

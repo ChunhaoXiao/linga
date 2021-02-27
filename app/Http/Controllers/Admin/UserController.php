@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $datas = User::with('vip')->latest()->paginate();
+        $datas = User::with('vip')->name($request->name ?? '')->latest()->paginate();
 
         return view('admin.user.index', ['datas' => $datas]);
     }
@@ -25,5 +26,15 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $date = $request->vip_date;
+        $user = User::findOrFail($id);
+        if ($user->is_vip()) {
+            $user->vip->update(['ended_at' => $date]);
+        } else {
+            if (now()->diffInDays(Carbon::parse($date), false) > 0) {
+                $user->vips()->create(['started_at' => now(), 'ended_at' => $date]);
+            }
+        }
+
+        return redirect()->route('admin.users.index');
     }
 }

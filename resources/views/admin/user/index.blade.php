@@ -1,6 +1,17 @@
 @extends('admin.layout')
 
 @section('content')
+<p>
+<form class="form-inline" action="{{route('admin.users.index')}}">
+  <div class="form-group mb-2 mx-2">
+    <label for="" class="mr-1">用户名</label>
+    <input type="text" class="form-control" name="name" value="{{request()->name??''}}">
+  </div>
+  <div class="form-group mb-2 mx-2">
+    <button class="btn btn-info">搜索</button>
+  </div>
+</form>  
+</p>
     <table class="table table-bordered">
         <thead>
             <th>用户名</th>
