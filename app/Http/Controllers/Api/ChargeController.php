@@ -6,7 +6,7 @@ use App\Http\Requests\ChargeRequest;
 use App\Models\Card;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Controller;
 class ChargeController extends Controller
 {
     // public function create()
