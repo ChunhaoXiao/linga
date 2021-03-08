@@ -8,6 +8,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ChargeController;
 use App\Http\Controllers\Api\CollectController;
 use App\Http\Controllers\Api\FeedController;
 use App\Http\Controllers\Api\HistoryController;
@@ -69,4 +70,6 @@ Route::middleware('auth:api', 'extra.data')->group(function () {
     Route::get('/feed', [FeedController::class, 'index']);
     Route::get('/feed/unread', [UnreadFeedCountController::class, 'index']);
     Route::get('/role', [UserRoleController::class, 'index']);
+
+    Route::post('/charge', [ChargeController::class, 'store']);
 });
