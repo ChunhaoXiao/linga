@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ChargeRequest;
 use App\Models\Card;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
+
 class ChargeController extends Controller
 {
     // public function create()
@@ -18,7 +19,7 @@ class ChargeController extends Controller
     {
         //$user = User::where('name', $request->name)->first();
         $user = Auth::user();
-        $card = Card::filter(['card_number' => $request->card])->first();
+        $card = Card::filter(['card_number' => $request->card_number])->first();
         $vip = $user->vips()->where('ended_at', '>', now())->first();
         $months = $card->vip_month;
         if ($vip) {
