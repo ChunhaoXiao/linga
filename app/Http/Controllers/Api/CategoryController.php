@@ -9,6 +9,6 @@ class CategoryController extends Controller
 {
     public function index() {
         $datas = Category::all();
-        return $datas;
+        return ['data' => $datas];
     }
 }
