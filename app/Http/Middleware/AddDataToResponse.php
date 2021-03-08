@@ -18,11 +18,11 @@ class AddDataToResponse
         $response = $next($request);
         //$extra = array_filter(config('extra'));
         //$extra = ['share' => '私信投稿'];
-        $data = Config::first()->share_text ?? '';
-        if ($data) {
+        $config = Config::first();
+        if (!$config->review_mode) {
             $content = json_decode($response->content(), true) ?? [];
             $response->setContent(json_encode(array_merge($content, [
-                'share' => $data,
+                'share' => $config->share_text,
                 'charge' => '加入V 组用户',
             ])));
         }
