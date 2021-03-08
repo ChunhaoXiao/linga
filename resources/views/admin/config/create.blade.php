@@ -14,8 +14,8 @@
         <div class="form-group">
             <label for="">开启审核模式</label>
             <div>
-                是<input type="radio" name="review_mode" value="1">
-                否<input type="radio" name="review_mode" value="0">
+                <span class="mr-2">是<input type="radio" name="review_mode" value="1"></span>
+                <span>否<input type="radio" name="review_mode" value="0"></span>
             </div>
         </div>
 
