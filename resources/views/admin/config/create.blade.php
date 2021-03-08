@@ -14,8 +14,8 @@
         <div class="form-group">
             <label for="">开启审核模式</label>
             <div>
-                <span class="mr-2">是<input type="radio" name="review_mode" value="1" {{$data->review_mode == 1? checked:''}}></span>
-                <span>否<input type="radio" name="review_mode" value="0" {{$data->review_mode == 0? checked:''}}></span>
+                <span class="mr-2">是<input type="radio" name="review_mode" value="1" {{$data->review_mode == 1? 'checked':''}}></span>
+                <span>否<input type="radio" name="review_mode" value="0" {{$data->review_mode == 0? 'checked':''}}></span>
             </div>
         </div>
 
