@@ -10,6 +10,10 @@
             <label for="">分享按钮文字</label>
             <input type="text" class="form-control" name="share_text" value="{{$data->share_text??''}}">
         </div>
+        <div class="form-group">
+            <label for="">卡密购买地址</label>
+            <input type="text" class="form-control" name="buy_address" value="{{$data->buy_address??''}}">
+        </div>
 
         <div class="form-group">
             <label for="">开启审核模式</label>
